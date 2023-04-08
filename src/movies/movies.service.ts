@@ -12,9 +12,9 @@ export class MoviesService {
     { id: 5, name: 'Saving Private Ryan' },
   ];
 
-  create(createMovieDto: CreateMovieDto) {
+  create(newMovie: CreateMovieDto) {
     const id = this.movies.length + 1;
-    const movie = { id: id, name: createMovieDto.name };
+    const movie = { id: id, name: newMovie.name };
     this.movies.push(movie);
     return movie;
   }
@@ -27,9 +27,9 @@ export class MoviesService {
     return this.movies.find((movie) => movie.id === id);
   }
 
-  update(id: number, updateMovieDto: UpdateMovieDto) {
+  update(id: number, updatedMovie: UpdateMovieDto) {
     return (this.movies = this.movies.map((movie) => {
-      return movie.id === id ? { ...movie, name: updateMovieDto.name } : movie;
+      return movie.id === id ? { ...movie, name: updatedMovie.name } : movie;
     }));
   }
 
