@@ -7,7 +7,7 @@ export class MoviesService {
   movies = [
     { id: 1, name: 'Fury' },
     { id: 2, name: 'All Quiet On The Western Front' },
-    { id: 3, name: 'The Resistenace Banker' },
+    { id: 3, name: 'The Resistance Banker' },
     { id: 4, name: 'The Thin Red Line' },
     { id: 5, name: 'Saving Private Ryan' },
   ];
