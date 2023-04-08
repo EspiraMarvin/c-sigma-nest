@@ -4,7 +4,7 @@ import { UpdateMovieDto } from './dto/update-movie.dto';
 
 @Injectable()
 export class MoviesService {
-  movies = [
+  private movies = [
     { id: 1, name: 'Fury' },
     { id: 2, name: 'All Quiet On The Western Front' },
     { id: 3, name: 'The Resistance Banker' },
