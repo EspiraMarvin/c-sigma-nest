@@ -4,23 +4,36 @@ import { UpdateMovieDto } from './dto/update-movie.dto';
 
 @Injectable()
 export class MoviesService {
+  movies = [
+    { id: 1, name: 'Fury' },
+    { id: 2, name: 'All Quiet On The Western Front' },
+    { id: 3, name: 'The Resistenace Banker' },
+    { id: 4, name: 'The Thin Red Line' },
+    { id: 5, name: 'Saving Private Ryan' },
+  ];
+
   create(createMovieDto: CreateMovieDto) {
-    return 'This action adds a new movie';
+    const id = this.movies.length + 1;
+    const movie = { id: id, name: createMovieDto.name };
+    this.movies.push(movie);
+    return movie;
   }
 
   findAll() {
-    return `This action returns all movies`;
+    return this.movies;
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} movie`;
+    return this.movies.find((movie) => movie.id === id);
   }
 
   update(id: number, updateMovieDto: UpdateMovieDto) {
-    return `This action updates a #${id} movie`;
+    return (this.movies = this.movies.map((movie) => {
+      return movie.id === id ? { ...movie, name: updateMovieDto.name } : movie;
+    }));
   }
 
   remove(id: number) {
-    return `This action removes a #${id} movie`;
+    return (this.movies = this.movies.filter((movie) => movie.id !== id));
   }
 }
