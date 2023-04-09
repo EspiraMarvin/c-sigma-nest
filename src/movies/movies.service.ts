@@ -21,16 +21,23 @@ export class MoviesService {
   }
 
   findOne(id: number) {
-    return this.movies.find((movie) => movie.id === id);
+    const movie = this.movies.find((movie) => movie.id === id);
+    if (!movie) {
+      throw new Error('Movie not found');
+    }
+    return movie;
   }
 
   update(id: number, updatedMovie: UpdateMovieDto) {
-    return (this.movies = this.movies.map((movie) => {
+    this.movies = this.movies.map((movie) => {
       return movie.id === id ? { ...movie, name: updatedMovie.name } : movie;
-    }));
+    });
+    return this.findOne(id);
   }
 
   remove(id: number) {
-    return (this.movies = this.movies.filter((movie) => movie.id !== id));
+    const toBeRemoved = this.findOne(id);
+    this.movies = this.movies.filter((movie) => movie.id !== id);
+    return toBeRemoved;
   }
 }
