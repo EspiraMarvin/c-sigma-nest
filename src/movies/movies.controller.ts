@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  NotFoundException,
 } from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
@@ -27,7 +28,11 @@ export class MoviesController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.moviesService.findOne(+id);
+    try {
+      return this.moviesService.findOne(+id);
+    } catch (error) {
+      throw new NotFoundException();
+    }
   }
 
   @Patch(':id')
